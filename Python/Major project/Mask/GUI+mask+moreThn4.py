@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import tkinter
 from tkinter import *
 top = tkinter.Tk()
-top.geometry('900x600')
+top.geometry('1000x700')
 top.title("LIFT")
 top['background']='#333333'
 
@@ -105,7 +105,7 @@ def my_mainloop():
         f=f+1
         img= cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),3)
 
-
+    status="No Face Detected"
     # ret,frame=cap.read()
     # frame=cv2.imread("D:\EDI_dataset\Without_mask\\00010.png")
     faceCascade=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -127,13 +127,27 @@ def my_mainloop():
                 print(Prediction)
                 print('\n')
                 if Prediction>0.6:
-                    status="No Mask"
+                    status="No Mask Detected"
                     mflag=2
                     print('No mask')
                 elif Prediction<0.6:
-                    status="Mask"
+                    status="Mask Detected"
                     mflag=0
                     print('Mask')
+    
+    font = cv2.FONT_HERSHEY_SIMPLEX 
+
+    org = (50, 50) 
+
+    fontScale = 2
+ 
+    color = (255, 0, 0) 
+
+    thickness = 3
+     
+    frame = cv2.putText(frame, status, org, font, fontScale, color, thickness, cv2.LINE_AA)
+    cv2.imshow("Webcam",frame)
+    
     cv2.imshow("Webcam",frame)
 
 

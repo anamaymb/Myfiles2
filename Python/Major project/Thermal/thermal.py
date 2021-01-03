@@ -2,9 +2,9 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
-img=cv2.imread('thermal_1.jpg')
-IMG=cv2.imread('thermal_1.jpg')
-
+img=cv2.imread('D:/GITHUB/MyFiles-master/Python/Major project/Thermal/RGB_thermal/thermal_1.jpg')
+IMG=cv2.imread('D:/GITHUB/MyFiles-master/Python/Major project/Thermal/RGB_thermal/thermal_1.jpg')
+cv2.imshow('img',img)
 # gray=np.zeros((img.shape[0],img.shape[1],1),dtype=np.uint16)
 
 # img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -36,9 +36,9 @@ for cnt in cont:
         print(w,h)
         cv2.rectangle(img,(x,y),(x+w,y+h),(255,255,255),3)
 
-plt.imshow(mask,'gray')
-plt.show()
-# plt.imshow(cont_img)
+# plt.imshow(mask,'gray')
+# plt.show()
+cv2.imshow('bimg',mask)
 # plt.show()
 
 
@@ -49,9 +49,11 @@ plt.show()
 # plt.imshow(IMG)
 # plt.show(block=True)
 
-img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+# img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-plt.imshow(img)
-plt.show()
+# plt.imshow(img)
+# plt.show()
+
+cv2.imshow('cimg',img)
 
 cv2.waitKey(0)
