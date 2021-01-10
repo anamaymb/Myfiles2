@@ -56,13 +56,12 @@ def messege():
 
 
 
-
-
-
 face_cascade = cv2.CascadeClassifier('cascade.xml')
 
-img = cv2.imread('D:/GITHUB/MyFiles-master/Python/Major project/Thermal/RGB_thermal/thermal_9.jpg')
+img = cv2.imread('D:/GITHUB/MyFiles2/Python/Major project/Thermal/RGB_thermal/thermal_9.jpg')
 
+# det - 4, 7, 9, 10, 12, 16, 21
+# no det - 14, 1, 8, 13, 15, 17, 18, 25  
 img = cv2.resize(img, (500, 500))
 
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

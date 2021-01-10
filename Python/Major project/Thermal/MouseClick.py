@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
 
-shorten=0.4	
+shorten=0.8	
 
-# cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0)
 
 def function(event, x, y, flags, params):
     
@@ -26,9 +26,13 @@ def function(event, x, y, flags, params):
 
 # a = cv2.imread("solar.jpg",-1)
 # z = cv2.imread("solar.jpg",-1)
+
 # ret, a = cap.read()
-a = cv2.imread('D:/GITHUB/MyFiles-master/Python/Major project/RGB_thermal/thermal_10.jpg',-1)
-z = cv2.imread('D:/GITHUB/MyFiles-master/Python/Major project/RGB_thermal/thermal_10.jpg',-1)
+a = cv2.imread('D:/GITHUB/MyFiles2/Python/Major project/Thermal/RGB_thermal/thermal_10.jpg',-1)
+z = cv2.imread('D:/GITHUB/MyFiles2/Python/Major project/Thermal/RGB_thermal/thermal_10.jpg',-1)
+# blur = cv2.GaussianBlur(a, (3, 3), 0)
+# a = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+z=a
 a = cv2.resize(a, (500, 500))
 z = cv2.resize(z, (500, 500))
 

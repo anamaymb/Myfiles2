@@ -95,39 +95,27 @@ def my_mainloop():
     # print ("Hello World!")
 
 
-    ret, img = cap.read()
-    frame=img
-    gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-    faces=face_cascade.detectMultiScale(gray,1.3,5)
-    f=0
-
-
+    ret,frame=cap.read()
     faceCascade=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     gray=cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces=faceCascade.detectMultiScale(gray,1.03,6)
     for x,y,w,h in faces:
-        roi_gray=gray[y:y+h, x:x+w]
         roi_color=frame[y:y+h, x:x+w]
         cv2.rectangle(frame, (x,y), (x+w,y+h), (255,0,0), 2)
-        faces1=faceCascade.detectMultiScale(roi_gray)
-        for (ex,ey,ew,eh) in faces1:
-                face_roi=roi_color[ey:ey+eh, ex:ex+ew]
-            
-                final_img=cv2.resize(face_roi, (224,224))
-                final_img=np.expand_dims(final_img,axis=0)
-                final_img=final_img/255.0
-                font=cv2.FONT_HERSHEY_PLAIN
-                Prediction=new_model.predict(final_img)
-                print(Prediction)
-                print('\n')
-                if Prediction>0.6:
-                    # status="No Mask Detected"
-                    mflag=2
-                    print('No mask')
-                elif Prediction<0.6:
-                    # status="Mask Detected"
-                    mflag=0
-                    print('Mask')
+        final_img=cv2.resize(roi_color, (224,224))
+        final_img=np.expand_dims(final_img,axis=0)
+        final_img=final_img/255.0
+        Prediction=new_model.predict(final_img)
+        print(Prediction)
+        if Prediction>0.6:
+            status="No Mask"
+            print('No mask')
+            mflag=2
+        elif Prediction<0.6:
+            status="Mask"
+            print('Mask')
+            mflag=0
+        cv2.imshow("Webcam",frame)
     
      
     # frame = cv2.putText(frame, status, org, font, fontScale, color, thickness, cv2.LINE_AA)
