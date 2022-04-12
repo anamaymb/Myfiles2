@@ -27,9 +27,9 @@ def function(event, x, y, flags, params):
 # a = cv2.imread("solar.jpg",-1)
 # z = cv2.imread("solar.jpg",-1)
 
-# ret, a = cap.read()
-a = cv2.imread('D:/GITHUB/MyFiles2/Python/Major project/Thermal/RGB_thermal/thermal_10.jpg',-1)
-z = cv2.imread('D:/GITHUB/MyFiles2/Python/Major project/Thermal/RGB_thermal/thermal_10.jpg',-1)
+ret, a = cap.read()
+# a = cv2.imread('D:/GITHUB/MyFiles2/Python/Major project/Thermal/RGB_thermal/thermal_10.jpg',-1)
+# z = cv2.imread('D:/GITHUB/MyFiles2/Python/Major project/Thermal/RGB_thermal/thermal_10.jpg',-1)
 # blur = cv2.GaussianBlur(a, (3, 3), 0)
 # a = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
 z=a
