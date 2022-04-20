@@ -24,7 +24,7 @@ def nothing(x):
 shorten = 0.8
 
 cv2.namedWindow("Trackbars")
-cv2.createTrackbar("X","Trackbars",-150,250,nothing)
+cv2.createTrackbar("X","Trackbars",0,200,nothing)
 
 
 cap = cv2.VideoCapture(0)
@@ -38,10 +38,10 @@ a=cv2.resize(a,(int(a.shape[1]*shorten),int(a.shape[0]*shorten)))
 
 final=np.zeros((a.shape[0],a.shape[1],3),dtype=np.uint8)
 var=np.zeros((a.shape[0],a.shape[1],3),dtype=np.int8)
-avg=np.zeros((a.shape[0],a.shape[1]),dtype=np.int8)
+avg=np.zeros((a.shape[0],a.shape[1]),dtype=np.int)
 
 
-con = -0.5
+con = 2
 
 while cap.isOpened():
     ret, a = cap.read()
@@ -49,7 +49,7 @@ while cap.isOpened():
     a=cv2.resize(a,(int(a.shape[1]*shorten),int(a.shape[0]*shorten)))
     
     cons = cv2.getTrackbarPos("X","Trackbars")
-    con = cons/100
+    con = (cons-100)/100
     
     cv2.imshow('A', a)
 
@@ -66,6 +66,9 @@ while cap.isOpened():
         (a[:,:,z]<avg)* (  (a[:,:,z]<=con*var[:,:,z])*(0) + (a[:,:,z]>con*var[:,:,z])*(a[:,:,z]-con*var[:,:,z])  ) + \
         (a[:,:,z]==avg) * (a[:,:,z])
 
+        # final[:,:,z] =  (a[:,:,z] > avg)*(((a[:,:,z]/2 + con*var[:,:,z]/2)>127)*(255) + (((a[:,:,z]/2 + con*var[:,:,z]/2)<=127)*( (con>=0)*(a[:,:,z]+con*var[:,:,z]) + (con<0)* ( (a[:,:,z] > abs(con*var[:,:,z]) )* (a[:,:,z] + con*var[:,:,z]) + (a[:,:,z] < abs(con*var[:,:,z]) ) * 0 ) ) ) )  + \
+        # (a[:,:,z]<avg)* (  (a[:,:,z]<=con*var[:,:,z])*(0) + (a[:,:,z]>con*var[:,:,z])*(a[:,:,z]-con*var[:,:,z])  ) + \
+        # (a[:,:,z]==avg) * (a[:,:,z])
 
     cv2.imshow('final2' , final)
 
